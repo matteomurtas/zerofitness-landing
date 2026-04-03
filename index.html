@@ -788,6 +788,15 @@
   <div class="loader-text">ZERO FITNESS & HEALTH</div>
   <div class="loader-bar"></div>
 </div>
+<script>
+  // This runs immediately - guaranteed to hide loader
+  window.__hideLoader = function() {
+    document.getElementById('loader').style.opacity = '0';
+    document.getElementById('loader').style.visibility = 'hidden';
+    document.getElementById('loader').style.pointerEvents = 'none';
+  };
+  setTimeout(window.__hideLoader, 1500);
+</script>
 
 <!-- NAVBAR -->
 <nav>
@@ -804,7 +813,7 @@
 
   <!-- MASSIVE SPOTS COUNTER -->
   <div class="spots-hero">
-    <div class="spots-number" id="spots">150</div>
+    <div class="spots-number" id="spots">0</div>
     <div class="spots-label">POSTI DISPONIBILI</div>
     <div class="spots-bar-wrap">
       <div class="spots-bar">
@@ -1050,84 +1059,93 @@
 </footer>
 
 <script>
-  // Loader - hide immediately after short delay
-  function hideLoader() {
-    var loader = document.getElementById('loader');
-    if (loader) loader.classList.add('hidden');
-  }
-  setTimeout(hideLoader, 1500);
-
   // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry, i) {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
+        setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
+        revealObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.15 });
-  reveals.forEach(el => observer.observe(el));
+  reveals.forEach(function(el) { revealObserver.observe(el); });
+</script>
 
+<script>
   // Spots counter animation
-  let spotsAnimated = false;
-  const spotsEl = document.getElementById('spots');
-  const spotsBar = document.getElementById('spotsBar');
-  spotsEl.textContent = '0';
-  spotsBar.style.width = '0%';
+  var spotsAnimated = false;
 
   function animateSpots() {
     if (spotsAnimated) return;
     spotsAnimated = true;
 
-    // Hold zero for 2 seconds, then blink twice, then count
-    let blinks = 0;
-    spotsEl.style.opacity = '1';
-    setTimeout(() => {
-      const blinkInterval = setInterval(() => {
+    var el = document.getElementById('spots');
+    var bar = document.getElementById('spotsBar');
+    if (!el || !bar) return;
+
+    el.textContent = '0';
+    bar.style.width = '0%';
+    el.style.opacity = '1';
+
+    // Show zero for 2 seconds
+    setTimeout(function() {
+      // Blink twice
+      var blinks = 0;
+      var blinkTimer = setInterval(function() {
         blinks++;
-        spotsEl.style.opacity = spotsEl.style.opacity === '0' ? '1' : '0';
+        if (el.style.opacity === '0') {
+          el.style.opacity = '1';
+        } else {
+          el.style.opacity = '0';
+        }
         if (blinks >= 4) {
-          clearInterval(blinkInterval);
-          spotsEl.style.opacity = '1';
-          startCounting();
+          clearInterval(blinkTimer);
+          el.style.opacity = '1';
+          // Count up
+          var startTime = null;
+          function countUp(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var elapsed = timestamp - startTime;
+            var progress = Math.min(elapsed / 5500, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.round(eased * 150);
+            el.textContent = current;
+            bar.style.width = (current / 150 * 100) + '%';
+            if (progress < 1) {
+              requestAnimationFrame(countUp);
+            }
+          }
+          requestAnimationFrame(countUp);
         }
       }, 350);
     }, 2000);
-
-    function startCounting() {
-      const target = 150;
-      const duration = 5500;
-      let start = null;
-      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-      function step(timestamp) {
-        if (!start) start = timestamp;
-        const elapsed = timestamp - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = easeOutCubic(progress);
-        const current = Math.round(eased * target);
-        spotsEl.textContent = current;
-        spotsBar.style.width = (current / target * 100) + '%';
-        if (progress < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
   }
-  const spotsObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) animateSpots();
-  });
-  spotsObserver.observe(spotsEl);
 
+  // Start after loader disappears
+  setTimeout(animateSpots, 1800);
+</script>
+
+<script>
   // Form submit
   function submitForm() {
-    const fname = document.getElementById('fname').value.trim();
-    const email = document.getElementById('email').value.trim();
+    var fname = document.getElementById('fname').value.trim();
+    var email = document.getElementById('email').value.trim();
     if (!fname || !email) {
       alert('Per favore inserisci almeno nome ed email.');
       return;
     }
-    // Here you would send data to your backend / service (e.g. Formspree, Google Sheets, etc.)
     document.getElementById('formWrap').style.display = 'none';
     document.getElementById('formSuccess').classList.add('show');
+    var el = document.getElementById('spots');
+    var bar = document.getElementById('spotsBar');
+    var currentSpots = parseInt(el.textContent);
+    if (currentSpots > 0) {
+      el.textContent = currentSpots - 1;
+      bar.style.width = ((currentSpots - 1) / 150 * 100) + '%';
+    }
+  }
+</script>
 
-    // Decrease spots counter for vis
+</body>
+</html>
