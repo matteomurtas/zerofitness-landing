@@ -1055,6 +1055,9 @@
     setTimeout(() => document.getElementById('loader').classList.add('hidden'), 800);
   });
 
+  // Fallback: hide loader after 3s max even if load event doesn't fire
+  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 3000);
+
   // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
