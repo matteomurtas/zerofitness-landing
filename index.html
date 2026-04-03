@@ -3,8 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zero Fitness & Health — Il Tuo Percorso Inizia da Zero</title>
-<meta name="description" content="Zero Fitness & Health. Solo 150 posti. Personal training in gruppi da 4. Pre-registrati ora. Start from zero. Build your best self.">
+<title>Zero Fitness & Health Modena — Personal Trainer e Allenamento in Piccoli Gruppi</title>
+<meta name="description" content="Zero Fitness & Health a Modena. Personal training in piccoli gruppi da 4 persone, 50 minuti, trainer qualificati, osteopatia e recupero infortuni. Solo 150 posti. Pre-registrati ora.">
+<meta name="keywords" content="personal trainer Modena, allenamento piccoli gruppi Modena, palestra Modena, fitness Modena, personal training Modena, osteopatia Modena, recupero infortuni Modena, allenamento personalizzato Modena, palestra piccoli gruppi, trainer qualificato Modena, Zero Fitness Health">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Zero Fitness & Health">
+<link rel="canonical" href="https://www.startfromzero.it">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Zero Fitness & Health Modena — Personal Trainer in Piccoli Gruppi">
+<meta property="og:description" content="Allenamento personalizzato in gruppi da 4 persone con trainer dedicato. Solo 150 posti disponibili a Modena. Pre-registrati ora.">
+<meta property="og:url" content="https://www.startfromzero.it">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Zero Fitness & Health">
+<meta property="og:image" content="https://www.startfromzero.it/og-image.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Zero Fitness & Health Modena — Personal Trainer in Piccoli Gruppi">
+<meta name="twitter:description" content="Allenamento personalizzato in gruppi da 4. Solo 150 posti. Pre-registrati ora.">
+
+<!-- Structured Data - Local Business -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthClub",
+  "name": "Zero Fitness & Health",
+  "url": "https://www.startfromzero.it",
+  "description": "Personal training in piccoli gruppi da 4 persone a Modena. Trainer qualificati, osteopatia integrata, recupero infortuni. Solo 150 posti disponibili.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Modena",
+    "addressRegion": "Emilia-Romagna",
+    "addressCountry": "IT"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 44.6471,
+    "longitude": 10.9252
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Modena"
+  },
+  "priceRange": "$$",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "07:00",
+    "closes": "21:00"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servizi",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Personal Training in Piccoli Gruppi"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Osteopatia"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Recupero Infortuni"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Allenamento Personalizzato"}}
+    ]
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -391,12 +452,10 @@
   .why-card .card-number {
     font-family: var(--font-display);
     font-size: 4rem;
-    color: var(--mid);
+    color: var(--accent);
     line-height: 1;
     margin-bottom: 20px;
-    transition: color 0.4s;
   }
-  .why-card:hover .card-number { color: var(--accent); }
   .why-card h3 {
     font-family: var(--font-display);
     font-size: 1.5rem;
@@ -1042,7 +1101,7 @@
     <div class="footer-links">
       <div class="footer-col">
         <h4>CONTATTI</h4>
-        <a href="mailto:info@startfromzero.it">info@startfromzero.it</a>
+        <a href="/cdn-cgi/l/email-protection#f79e999198b784839685839185989a8d928598d99e83"><span class="__cf_email__" data-cfemail="8fe6e1e9e0cffcfbeefdfbe9fde0e2f5eafde0a1e6fb">[email&#160;protected]</span></a>
         <a href="https://www.instagram.com/startfromzero.it" target="_blank">Instagram</a>
       </div>
       <div class="footer-col">
@@ -1058,7 +1117,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Reveal on scroll
   var reveals = document.querySelectorAll('.reveal');
   var revealObserver = new IntersectionObserver(function(entries) {
@@ -1138,14 +1197,4 @@
     document.getElementById('formWrap').style.display = 'none';
     document.getElementById('formSuccess').classList.add('show');
     var el = document.getElementById('spots');
-    var bar = document.getElementById('spotsBar');
-    var currentSpots = parseInt(el.textContent);
-    if (currentSpots > 0) {
-      el.textContent = currentSpots - 1;
-      bar.style.width = ((currentSpots - 1) / 150 * 100) + '%';
-    }
-  }
-</script>
-
-</body>
-</html>
+    var bar = document
