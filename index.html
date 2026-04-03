@@ -944,7 +944,7 @@
 <section class="hero">
   <div class="hero-badge">
     <span class="dot"></span>
-    PRE-REGISTRAZIONI APERTE — POSTI LIMITATI
+    MODENA — PRE-REGISTRAZIONI APERTE — POSTI LIMITATI
   </div>
 
   <!-- MASSIVE SPOTS COUNTER -->
@@ -967,7 +967,7 @@
     INIZIA DA <span class="highlight">ZERO</span>
   </h1>
   <p class="hero-sub">
-    <strong>Start from zero. Build your best self.</strong><br>
+    <strong>Il nuovo studio di personal training a Modena.</strong><br>
     Gruppi da 4 persone, 50 minuti di lavoro mirato con un trainer dedicato. Un metodo costruito intorno a te, <strong>zero scuse</strong>.
   </p>
   <div class="hero-cta-group">
@@ -1274,19 +1274,16 @@
 </script>
 
 <script>
-  // Form submit - sends to info@startfromzero.it via FormSubmit
   function submitForm() {
     var fname = document.getElementById('fname').value.trim();
     var lname = document.getElementById('lname').value.trim();
     var email = document.getElementById('email').value.trim();
     var phone = document.getElementById('phone').value.trim();
     var goal = document.getElementById('goal').value;
-
     if (!fname || !email) {
       alert('Per favore inserisci almeno nome ed email.');
       return;
     }
-
     var formData = new FormData();
     formData.append('Nome', fname);
     formData.append('Cognome', lname);
@@ -1295,15 +1292,12 @@
     formData.append('Obiettivo', goal);
     formData.append('_subject', 'Nuova Pre-Registrazione Zero Fitness: ' + fname + ' ' + lname);
     formData.append('_template', 'table');
-
     fetch('https://formsubmit.co/ajax/info@startfromzero.it', {
       method: 'POST',
       body: formData
     }).then(function() {}).catch(function() {});
-
     document.getElementById('formWrap').style.display = 'none';
     document.getElementById('formSuccess').classList.add('show');
-
     var el = document.getElementById('spots');
     var bar = document.getElementById('spotsBar');
     var currentSpots = parseInt(el.textContent);
