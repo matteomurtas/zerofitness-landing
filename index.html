@@ -1033,7 +1033,7 @@
     <div class="footer-links">
       <div class="footer-col">
         <h4>CONTATTI</h4>
-        <a href="/cdn-cgi/l/email-protection#41282f272e01323520333527332e2c3b24332e6f2835"><span class="__cf_email__" data-cfemail="137a7d757c53606772616775617c7e6976617c3d7a67">[email&#160;protected]</span></a>
+        <a href="mailto:info@startfromzero.it">info@startfromzero.it</a>
         <a href="https://www.instagram.com/startfromzero.it" target="_blank">Instagram</a>
       </div>
       <div class="footer-col">
@@ -1049,14 +1049,13 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Loader
-  window.addEventListener('load', () => {
-    setTimeout(() => document.getElementById('loader').classList.add('hidden'), 800);
-  });
-
-  // Fallback: hide loader after 3s max even if load event doesn't fire
-  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 3000);
+<script>
+  // Loader - hide immediately after short delay
+  function hideLoader() {
+    var loader = document.getElementById('loader');
+    if (loader) loader.classList.add('hidden');
+  }
+  setTimeout(hideLoader, 1500);
 
   // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
